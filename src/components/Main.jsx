@@ -4,15 +4,17 @@ import requests from '../services/MoviesAPI.js'
 import { useState, useEffect } from 'react'
 const Main = () => {
     const [movies, setMovies] = useState([]);
-    let movie = movies[Math.floor(Math.random() * (20 - 0 + 1) + 0)]
+    let movie = movies[Math.floor(Math.random() * (19 - 0 + 1) + 0)]
 
     useEffect(() => {
         axios.get(requests.requestPopular).then(res => {
-            console.log(res.data.results)
             setMovies(res.data.results)
         })
     }, []);
+
+    const truncateString = (str, num) => (str?.length > num) ? str.slice(0,num) + "..." : str
     
+
     return (
         <div className='w-full h-[550px] text-white'>
             <div className='w-full h-full'>
@@ -26,7 +28,7 @@ const Main = () => {
                     </div>
                     <p className='text-gray-400 text-sm'>Released: {movie?.release_date}</p>
                     <p className='w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[35%] text-gray-200'>
-                        {movie?.overview}
+                        {truncateString(movie?.overview, 150)}
                     </p>
                 </div>
             </div>
