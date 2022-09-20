@@ -4,11 +4,10 @@ import requests from '../services/MoviesAPI.js'
 import { useState, useEffect } from 'react'
 const Main = () => {
     const [movies, setMovies] = useState([]);
-    let movie = movies[Math.floor(Math.random() * (20 - 0 + 1) + 0)]
+    let movie = movies[Math.floor(Math.random() * (19 - 0 + 1) + 0)]
 
     useEffect(() => {
         axios.get(requests.requestPopular).then(res => {
-            console.log(res.data.results)
             setMovies(res.data.results)
         })
     }, []);
