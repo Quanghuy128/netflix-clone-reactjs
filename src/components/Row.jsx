@@ -12,8 +12,8 @@ const Row = ({ title, fetchURL, rowID }) => {
         axios.get(fetchURL).then((res) => {
             setMovies(res.data.results)
         })
-
     }, [fetchURL]);
+    console.log(movies);
 
     const sideLeft = () => {
         var slider = document.getElementById('slider' + rowID);
